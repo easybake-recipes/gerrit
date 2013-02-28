@@ -1,0 +1,6 @@
+<% @replications.each do |replication| -%>
+[remote "<%= replication['id'] %>"]
+  <% replication['remotes'].each do |remote| -%>
+  url = <%= remote %>${name}.git
+  <% end -%>
+<% end -%>

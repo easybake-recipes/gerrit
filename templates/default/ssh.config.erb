@@ -1,0 +1,9 @@
+<% @replications.each do |replication| -%>
+  <% replication['repos'].each do |repo| -%>
+Host <%= repo %>.<%= replication['base_url'] %>
+HostName <%= replication['base_url'] %>
+User git
+IdentityFile ~/.ssh/<%= repo %>-id_rsa
+
+  <% end -%>
+<% end -%>
