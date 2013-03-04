@@ -8,6 +8,7 @@
 #
 
 include_recipe "postgresql::server"
+include_recipe "postgresql::ruby"
 include_recipe "git"
 
 node.default['gerrit']['war_file'] = File.basename(node['gerrit']['url'])
@@ -161,10 +162,11 @@ template "/etc/init.d/gerrit" do
   mode "0755"
 end
 
-execute "start gerrit at boot" do
-  command "chkconfig --add gerrit"
-  not_if { File.exists?("/etc/rc3.d/S99gerrit") }  
-end
+# Do we need this if we enable/start it later?
+# execute "start gerrit at boot" do
+#   command "chkconfig --add gerrit"
+#   not_if { File.exists?("/etc/rc3.d/S99gerrit") }  
+# end
 
 service "gerrit" do
   supports :restart => true
