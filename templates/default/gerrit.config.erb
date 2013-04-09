@@ -11,6 +11,12 @@
 [sendemail]
   smtpServer = <%= node['gerrit']['smtp_server'] %>
   from = <%= node['gerrit']['smtp_from'] %>
+<% if node['gerrit']['smtp_pass'] -%>
+  smtpPass = <%= node['gerrit']['smtp_pass'] %>
+<% end -%>
+<% if node['gerrit']['smtp_user'] -%>
+  smtpUser = <%= node['gerrit']['smtp_user'] %>
+<% end -%>
 [container]
   user = <%= node['gerrit']['username'] %>
   javaHome = <%= node['java']['java_home'] %>
